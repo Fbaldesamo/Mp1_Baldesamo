@@ -16,13 +16,12 @@ namespace Mp1_Baldesamo
             bool validate;
             string Firstname;
             string Lastname;
+            double ContacNum;
             do
             {
                 Console.Write("First Name: ");
                 Firstname = Console.ReadLine();
                 validate = ValidateUser(Firstname);
-
-                
             } while (validate == false);
 
             do
@@ -30,12 +29,20 @@ namespace Mp1_Baldesamo
                 Console.Write("Last Name: ");
                 Lastname = Console.ReadLine();
                 validate = ValidateUser(Lastname);
-
             }
             while (validate == false);
-            Console.WriteLine("Correct!");
 
-            
+            bool validation_Contactnum;
+
+            do
+            {
+                Console.Write("Contact Number: ");
+                string ContactNum_Validate = Console.ReadLine();
+                validation_Contactnum = double.TryParse(ContactNum_Validate, out ContacNum);
+            }
+            while (validation_Contactnum == false);
+
+            Console.WriteLine("Correct!");
         }
 
         public static bool ValidateUser(string a)
