@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Mp1_Baldesamo
 {
@@ -13,10 +14,10 @@ namespace Mp1_Baldesamo
 
         public static void AddUser()
         {
-            bool validate;
-            string Firstname;
-            string Lastname;
+            
+            string Firstname, Lastname;
             double ContacNum;
+            bool validate, validation_Contactnum;
             do
             {
                 Console.Write("First Name: ");
@@ -32,7 +33,7 @@ namespace Mp1_Baldesamo
             }
             while (validate == false);
 
-            bool validation_Contactnum;
+            
 
             do
             {
@@ -42,7 +43,37 @@ namespace Mp1_Baldesamo
             }
             while (validation_Contactnum == false);
 
-            Console.WriteLine("Correct!");
+            Console.Write("Email: ");
+            string UserEmail = Console.ReadLine();
+
+            //open/creat the file text
+            FileStream fs = new FileStream("Added Users.txt", FileMode.Append);
+
+            //enable you to write in the text
+            StreamWriter sw = new StreamWriter(fs);
+
+            //write the infos in the text file
+            sw.WriteLine("FullName: {0} {1}",Firstname, Lastname);
+            sw.WriteLine("Contact Number: "+ContacNum);
+            sw.WriteLine("User Email: "+UserEmail);
+            sw.WriteLine("----------------------\n");
+            //close the file
+            sw.Close();
+            fs.Close();
+
+
+            //show the inputted infos
+            Console.Clear();
+            Console.WriteLine("FullName: {0} {1}", Firstname, Lastname);
+            Console.WriteLine("Contact Number: "+ ContacNum);
+            Console.WriteLine("User Email: "+ UserEmail);
+            Console.WriteLine("Press any key to exit, thankyou!");
+            Console.ReadKey();
+
+
+
+
+
         }
 
         public static bool ValidateUser(string a)
